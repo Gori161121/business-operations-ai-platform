@@ -1,5 +1,6 @@
-![Uploading business-operations-ai-platform-banner.png…]()
-
+<p align="center">
+  <img src="./images/business-operations-ai-platform-banner.png" alt="Business Operations AI Platform" width="100%">
+</p>
 # Business Operations AI Platform
 
 ### From Business Problems to Intelligent Systems
