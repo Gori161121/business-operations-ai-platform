@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="./business-operations-ai-platform-banner.png" alt="Business Operations AI Platform" width="100%">
-</p>
+![Uploading business-operations-ai-platform-banner.png…]()
 
 # Business Operations AI Platform
 
