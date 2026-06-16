@@ -1,3 +1,5 @@
+![Business Operations AI Platform](business-operations-ai-platform-banner.png)
+
 # Business Operations AI Platform
 
 ### From Business Problems to Intelligent Systems
