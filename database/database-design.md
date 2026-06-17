@@ -1,56 +1,265 @@
 # Database Design
 
-## Purpose
+## Overview
 
-The database serves as the central source of truth for all business operations, automation workflows, reporting systems, and AI-powered decision support.
+The database serves as the central operational data platform of the Business Operations AI Platform.
 
-The design focuses on scalability, automation readiness, and analytical reporting.
+It is designed to support workforce management, operational workflows, reporting, automation, business intelligence, and AI-powered decision support.
 
----
-
-## Main Entities
-
-### Employees
-
-Stores information about employees and contractors.
-
-Fields:
-
-* employee_id
-* full_name
-* role
-* contact_information
-* status
-* hire_date
+The architecture follows a scalable and analytics-oriented design that enables organizations to centralize operational information and create a single source of truth.
 
 ---
 
-### Locations
+# Core Business Entities
 
-Stores business locations.
+## Organizations
 
-Fields:
+Represents business entities operating within the platform.
 
-* location_id
-* location_name
-* address
-* status
+### Fields
+
+- organization_id
+- organization_name
+- industry
+- organization_type
+- status
+- created_date
 
 ---
 
-### Shifts
+## Departments
 
-Stores employee shift records.
+Represents organizational units.
 
-Fields:
+### Fields
 
-* shift_id
-* employee_id
-* location_id
-* start_time
-* end_time
-* worked_hours
+- department_id
+- organization_id
+- department_name
+- manager_id
+- status
 
+---
+
+## Employees
+
+Stores workforce information.
+
+### Fields
+
+- employee_id
+- department_id
+- full_name
+- position
+- employment_type
+- hire_date
+- status
+
+---
+
+## Shifts
+
+Stores workforce scheduling information.
+
+### Fields
+
+- shift_id
+- employee_id
+- shift_date
+- start_time
+- end_time
+- worked_hours
+- status
+
+---
+
+## Tasks
+
+Stores operational tasks.
+
+### Fields
+
+- task_id
+- assigned_employee
+- department_id
+- priority
+- due_date
+- completion_status
+
+---
+
+## Workflows
+
+Stores automated workflow definitions.
+
+### Fields
+
+- workflow_id
+- workflow_name
+- trigger_type
+- workflow_status
+- created_date
+
+---
+
+## Workflow Executions
+
+Stores workflow execution history.
+
+### Fields
+
+- execution_id
+- workflow_id
+- execution_time
+- execution_status
+- execution_duration
+
+---
+
+## Reports
+
+Stores generated business reports.
+
+### Fields
+
+- report_id
+- report_name
+- report_type
+- generated_date
+- generated_by
+
+---
+
+## KPI Metrics
+
+Stores business performance indicators.
+
+### Fields
+
+- metric_id
+- metric_name
+- metric_value
+- reporting_period
+- generated_date
+
+---
+
+## AI Insights
+
+Stores AI-generated business intelligence outputs.
+
+### Fields
+
+- insight_id
+- category
+- generated_date
+- recommendation
+- confidence_score
+- priority_level
+
+---
+
+# Database Relationships
+
+Organizations
+↓
+Departments
+↓
+Employees
+↓
+Shifts
+
+Organizations
+↓
+Workflows
+↓
+Workflow Executions
+
+Organizations
+↓
+Reports
+↓
+KPI Metrics
+
+Organizations
+↓
+AI Insights
+
+---
+
+# Technology Stack
+
+## Primary Databases
+
+- PostgreSQL
+- MySQL
+- Supabase
+
+## Operational Data Sources
+
+- Airtable
+- REST APIs
+- Internal Forms
+- Workflow Events
+
+---
+
+# Security Design
+
+## Access Control
+
+- role-based permissions
+- department-level visibility
+- executive access controls
+
+## Auditability
+
+- activity logs
+- workflow logs
+- change history
+
+## Data Protection
+
+- encrypted storage
+- secure API communication
+- permission management
+
+---
+
+# Analytics Capabilities
+
+The database is designed to support:
+
+- workforce analytics
+- operational analytics
+- performance reporting
+- workflow monitoring
+- business intelligence dashboards
+- executive reporting
+
+---
+
+# Future Expansion
+
+## Workforce Intelligence
+
+Advanced employee analytics and forecasting.
+
+## Operational Forecasting
+
+Predict future operational performance.
+
+## AI Recommendation Engine
+
+Generate operational recommendations automatically.
+
+## Multi-Business Support
+
+Manage multiple organizations from a single platform.
+
+## Executive Intelligence Layer
+
+Support strategic decision-making through AI-generated insights.
 ---
 
 ### Products
