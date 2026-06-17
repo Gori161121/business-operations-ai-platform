@@ -1,153 +1,245 @@
 # Business Operations AI Platform
 
-### AI-Powered Business Operating System
+### Transforming Business Operations Into Intelligent, Automated, and Data-Driven Systems
 
-Business Operations AI Platform is an intelligent business operating system designed to centralize operations, automate workflows, optimize workforce management, deliver business intelligence, and support executive decision-making through artificial intelligence.
+Business Operations AI Platform is designed to centralize operations, automate repetitive workflows, improve visibility across business activities, and support decision-making through analytics and artificial intelligence.
 
----
-
-## Executive Summary
-
-Modern organizations often operate through disconnected spreadsheets, messaging platforms, manual reporting processes, isolated databases, and repetitive operational activities.
-
-As businesses grow, operational complexity increases and visibility decreases.
-
-Business Operations AI Platform aims to solve this problem by creating a centralized intelligence layer that connects people, processes, data, automation, analytics, and AI-powered decision support into one scalable ecosystem.
-
-The platform is designed to become the digital operating system of a business.
+The platform combines operations management, workforce coordination, workflow automation, reporting, business intelligence, and AI-assisted decision support into a single ecosystem.
 
 ---
 
-## Business Vision
+## The Problem
 
-Build a next-generation Business Operating System capable of managing:
+As organizations grow, operational complexity increases.
 
-* Operations
-* Workforce
-* Workflows
-* Reporting
-* Analytics
-* Business Intelligence
-* Decision Support
-* Artificial Intelligence
+Teams often manage information across:
 
-from a single platform.
+- spreadsheets
+- messaging applications
+- disconnected databases
+- manual reports
+- operational documents
+
+This creates:
+
+- limited visibility
+- duplicated work
+- reporting delays
+- inconsistent processes
+- slower decision-making
+
+The challenge is not the lack of data.
+
+The challenge is turning operational data into operational intelligence.
 
 ---
 
-## Core Business Domains
+## The Vision
+
+Build an intelligent Business Operating System capable of connecting:
+
+```text
+Operations
+     ↓
+Data
+     ↓
+Automation
+     ↓
+Artificial Intelligence
+     ↓
+Business Intelligence
+     ↓
+Decision Support
+```
+
+The goal is to create a system that helps organizations operate more efficiently, automate repetitive work, and make better decisions.
+
+---
+
+## Core Platform Domains
 
 ### Operations Management
 
-Responsible for daily operational execution.
+Responsible for:
 
-Features:
-
-* task management
-* workforce coordination
-* operational monitoring
-* process visibility
-* performance tracking
+- workforce coordination
+- task management
+- operational visibility
+- process monitoring
+- performance tracking
 
 ---
 
 ### Workforce Management
 
-Responsible for employee administration and workforce optimization.
+Responsible for:
 
-Features:
-
-* employee management
-* shift scheduling
-* workload balancing
-* productivity monitoring
-* workforce analytics
+- employee management
+- shift scheduling
+- workload visibility
+- workforce analytics
 
 ---
 
 ### Workflow Automation
 
-Responsible for reducing manual operational work.
+Responsible for:
 
-Features:
-
-* workflow orchestration
-* automated approvals
-* notifications
-* process execution
-* system integrations
+- workflow orchestration
+- notifications
+- reporting automation
+- operational synchronization
 
 ---
 
 ### Business Intelligence
 
-Responsible for transforming business data into actionable insights.
+Responsible for:
 
-Features:
-
-* KPI monitoring
-* executive dashboards
-* performance analytics
-* trend analysis
-* operational intelligence
+- KPI monitoring
+- executive dashboards
+- operational analytics
+- performance visibility
 
 ---
 
 ### AI Operations
 
-Responsible for supporting management decisions.
+Responsible for:
 
-Features:
+- operational summaries
+- recommendations
+- anomaly detection
+- decision support
 
-* operational recommendations
-* anomaly detection
-* workflow optimization
-* performance analysis
-* executive summaries
+---
+
+## Prototype Components
+
+### Backend API
+
+FastAPI prototype backend providing:
+
+- workforce endpoints
+- reporting endpoints
+- analytics endpoints
+- health monitoring endpoints
+
+Current endpoints:
+
+```text
+GET /
+GET /health
+
+GET /employees
+GET /shifts
+
+GET /reports/daily
+
+GET /analytics/summary
+```
+
+---
+
+### Database Layer
+
+PostgreSQL database schema covering:
+
+- employees
+- locations
+- products
+- shifts
+- sales reports
+- analytics snapshots
+
+Included:
+
+- SQL Schema
+- Entity Relationship Diagram (ERD)
+
+---
+
+### API Specification
+
+OpenAPI specification documenting:
+
+- employee services
+- shift services
+- reporting services
+- analytics services
+
+---
+
+### Workflow Automation
+
+Sample n8n workflow demonstrating:
+
+```text
+Daily Trigger
+      ↓
+Fetch Shift Data
+      ↓
+Generate Analytics
+      ↓
+Create Daily Report
+```
+
+---
+
+### Business Use Cases
+
+Documented scenarios:
+
+- Employee Shift Management
+- Daily Operations Reporting
+- Workforce Analytics
+- AI Operations Summary
+- Automated Reporting Workflow
+- Executive Decision Support
 
 ---
 
 ## Technology Ecosystem
 
-### Development
+### Programming
 
-* Python
-* JavaScript
-* TypeScript
-* PHP
+- Python
+- Java
+- JavaScript
+- TypeScript
+- PHP
 
-### Data Platform
+### Databases
 
-* PostgreSQL
-* MySQL
-* Supabase
-* Airtable
+- PostgreSQL
+- MySQL
+- Supabase
+- Airtable
 
 ### Artificial Intelligence
 
-* OpenAI API
-* Claude AI
-* AI Agents
+- OpenAI API
+- Claude AI
+- AI Agents
 
 ### Automation
 
-* n8n
-* Make
-* REST APIs
-* Webhooks
+- n8n
+- Make
+- REST APIs
+- Webhooks
 
 ### Analytics
 
-* Power BI
-* Tableau
-* Excel
+- Power BI
+- Tableau
 
 ### Infrastructure
 
-* Docker
-* AWS
-* Azure
-* Google Cloud
+- Docker
+- AWS
+- Azure
+- Google Cloud
 
 ---
 
@@ -173,111 +265,111 @@ Executive Decision Support
 
 ## Repository Structure
 
-| Module       | Description                           |
-| ------------ | ------------------------------------- |
-| docs         | Product vision and business overview  |
-| architecture | Enterprise system architecture        |
-| database     | Database design and entity structure  |
-| workflows    | Operational workflow automation       |
-| roadmap      | Product development roadmap           |
-| ui           | Dashboard and interface concepts      |
-| diagrams     | System flow and architecture diagrams |
-| demo         | Product demonstration scenarios       |
-| src          | Planned implementation structure      |
+| Module | Description |
+|----------|----------|
+| backend | FastAPI prototype backend |
+| api | OpenAPI specification |
+| database | SQL schema, ERD and data model |
+| workflows | Workflow documentation and n8n export |
+| docs | Product overview and business use cases |
+| architecture | Enterprise architecture and Mermaid diagrams |
+| roadmap | Product roadmap |
+| ui | Interface concepts |
+| diagrams | System flow documentation |
+| demo | Product demonstration scenarios |
+| src | Planned implementation architecture |
 
 ---
 
-## Current Documentation
+## Current Capabilities
 
-### Product Documentation
+### Workforce Tracking
 
-* Project Overview
-* Business Vision
-* Strategic Objectives
-* Target Users
+Track employee activity, shifts, worked hours, and operational participation.
 
-### Technical Documentation
+### Reporting
 
-* Enterprise Architecture
-* Database Design
-* Workflow Design
-* Product Roadmap
+Generate operational summaries and daily reports.
 
-### Product Planning
+### Analytics
 
-* UI Concepts
-* System Flows
-* Demo Scenarios
-* Source Code Architecture
+Provide workforce and operational visibility through analytics endpoints.
 
----
+### Workflow Automation
 
-## Platform Objectives
-
-### Operational Excellence
-
-Improve operational efficiency through automation and intelligent workflows.
-
-### Data Visibility
-
-Provide real-time access to operational and business performance information.
+Automate operational reporting through workflow orchestration.
 
 ### Decision Support
 
-Enable management teams to make faster and more informed decisions.
-
-### Scalability
-
-Create systems capable of supporting long-term business growth.
-
-### Automation First
-
-Reduce repetitive manual work through workflow orchestration and AI.
+Transform operational data into actionable insights.
 
 ---
 
-## Future Platform Expansion
+## Running the Prototype
 
-### Workforce Intelligence
+### Install Dependencies
 
-Advanced workforce planning and productivity optimization.
+```bash
+pip install -r backend/requirements.txt
+```
 
-### Predictive Operations
+### Start API
 
-Forecast operational bottlenecks before they occur.
+```bash
+uvicorn backend.main:app --reload
+```
 
-### Process Mining
+### Swagger Documentation
 
-Automatically identify inefficiencies inside operational workflows.
+Open:
 
-### Executive Intelligence Engine
+```text
+http://127.0.0.1:8000/docs
+```
 
-Generate strategic recommendations powered by AI.
+### Health Check
 
-### Multi-Organization Support
+Request:
 
-Manage multiple businesses from a single operating environment.
+```text
+GET /health
+```
+
+Response:
+
+```json
+{
+  "status": "ok"
+}
+```
+
+---
+
+## Future Development
+
+Planned areas:
+
+- authentication
+- role management
+- workforce scheduling
+- advanced reporting
+- AI operations assistant
+- predictive analytics
+- executive dashboards
+- business intelligence engine
 
 ---
 
 ## Related Projects
 
-This platform serves as the foundation for several specialized intelligent systems:
-
-* AI Accounting Assistant
-* Legal AI Assistant
-* Medical AI Assistant
-* AutoConnect
-* LifeOS AI
-
----
-
-## Project Status
-
-Architecture, planning, documentation, and platform design are currently in progress.
+- AutoConnect
+- AI Accounting Assistant
+- Legal AI Assistant
+- Medical AI Assistant
+- LifeOS AI
 
 ---
 
 ## End Goal
 
-Create an intelligent Business Operating System capable of becoming the central platform for operations, workforce management, workflow automation, analytics, reporting, business intelligence, and executive decision support.
+Create a Business Operating System where operations, automation, analytics, and artificial intelligence work together to improve business performance and support better decisions.
