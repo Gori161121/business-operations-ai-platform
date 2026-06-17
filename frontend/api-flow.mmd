@@ -1,0 +1,13 @@
+flowchart LR
+
+User --> Dashboard
+
+Dashboard --> FastAPI
+
+FastAPI --> PostgreSQL
+
+FastAPI --> Analytics
+
+Analytics --> AIEngine
+
+AIEngine --> Dashboard
