@@ -1,0 +1,133 @@
+openapi: 3.0.3
+
+info:
+  title: Business Operations AI Platform API
+  description: API specification for workforce management, reporting, analytics, and operations monitoring.
+  version: 1.0.0
+
+servers:
+  - url: https://api.businessoperations.local
+
+paths:
+
+  /health:
+    get:
+      summary: Health Check
+      responses:
+        '200':
+          description: Service is running
+
+  /employees:
+    get:
+      summary: Get Employees
+      responses:
+        '200':
+          description: Employee list returned successfully
+
+    post:
+      summary: Create Employee
+      responses:
+        '201':
+          description: Employee created successfully
+
+  /employees/{id}:
+    get:
+      summary: Get Employee By ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        '200':
+          description: Employee found
+
+  /shifts:
+    get:
+      summary: Get Shifts
+      responses:
+        '200':
+          description: Shift list returned successfully
+
+    post:
+      summary: Create Shift
+      responses:
+        '201':
+          description: Shift created successfully
+
+  /reports/daily:
+    get:
+      summary: Daily Operations Report
+      responses:
+        '200':
+          description: Daily report generated
+
+  /analytics/summary:
+    get:
+      summary: Analytics Summary
+      responses:
+        '200':
+          description: Analytics summary generated
+
+components:
+
+  schemas:
+
+    Employee:
+      type: object
+      properties:
+        id:
+          type: integer
+
+        full_name:
+          type: string
+
+        role:
+          type: string
+
+        status:
+          type: string
+
+    Shift:
+      type: object
+      properties:
+        id:
+          type: integer
+
+        employee_id:
+          type: integer
+
+        location_id:
+          type: integer
+
+        shift_date:
+          type: string
+
+        worked_hours:
+          type: number
+
+    DailyReport:
+      type: object
+      properties:
+        total_employees:
+          type: integer
+
+        total_shifts:
+          type: integer
+
+        total_worked_hours:
+          type: number
+
+    AnalyticsSummary:
+      type: object
+      properties:
+        active_employees:
+          type: integer
+
+        total_worked_hours:
+          type: number
+
+        recommendation:
+          type: string
