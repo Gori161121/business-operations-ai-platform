@@ -2,8 +2,6 @@
   <img src="./business-operations-ai-platform-banner.png" alt="Business Operations AI Platform" width="100%">
 </p>
 
-# Business Operations AI Platform
-# Business Operations AI Platform
 
 ### From Business Problems to Intelligent Systems
 
