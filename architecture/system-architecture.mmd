@@ -1,0 +1,23 @@
+flowchart LR
+    A[Business Operations] --> B[Data Collection Layer]
+    B --> C[Business Data Platform]
+    C --> D[Workflow Automation Layer]
+    D --> E[AI Operations Engine]
+    E --> F[Business Intelligence Layer]
+    F --> G[Executive Decision Support]
+
+    C --> C1[(PostgreSQL)]
+    C --> C2[(Supabase)]
+    C --> C3[(Airtable)]
+
+    D --> D1[n8n]
+    D --> D2[Make]
+    D --> D3[Webhooks]
+
+    E --> E1[OpenAI API]
+    E --> E2[Claude AI]
+    E --> E3[AI Agents]
+
+    F --> F1[Power BI]
+    F --> F2[Tableau]
+    F --> F3[Analytics Reports]
