@@ -1,0 +1,74 @@
+{
+  "name": "Daily Operations Report Workflow",
+  "active": false,
+  "nodes": [
+    {
+      "id": "1",
+      "name": "Daily Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [200, 300]
+    },
+    {
+      "id": "2",
+      "name": "Fetch Shift Data",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [450, 300],
+      "parameters": {
+        "url": "http://localhost:8000/shifts",
+        "method": "GET"
+      }
+    },
+    {
+      "id": "3",
+      "name": "Generate Analytics",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [700, 300],
+      "parameters": {
+        "url": "http://localhost:8000/analytics/summary",
+        "method": "GET"
+      }
+    },
+    {
+      "id": "4",
+      "name": "Create Daily Report",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [950, 300],
+      "parameters": {
+        "url": "http://localhost:8000/reports/daily",
+        "method": "GET"
+      }
+    }
+  ],
+  "connections": {
+    "Daily Trigger": {
+      "main": [
+        [
+          {
+            "node": "Fetch Shift Data",
+            "type": "main"
+          }
+        ]
+      ]
+    },
+    "Fetch Shift Data": {
+      "main": [
+        [
+          {
+            "node": "Generate Analytics",
+            "type": "main"
+          }
+        ]
+      ]
+    },
+    "Generate Analytics": {
+      "main": [
+        [
+          {
+            "node": "Create Daily Report",
+            "type": "main"
+          }
+        ]
+      ]
+    }
+  }
+}
