@@ -1,129 +1,227 @@
 # Business Operations AI Platform
 
-### Transforming Business Operations Into Intelligent, Automated, and Data-Driven Systems
+### Multi-Location Workforce & Operations Intelligence Prototype
 
-Business Operations AI Platform is designed to centralize operations, automate repetitive workflows, improve visibility across business activities, and support decision-making through analytics and artificial intelligence.
+Business Operations AI Platform is a prototype system designed to transform operational activity into structured data, operational visibility, workforce analytics, and actionable business insights.
 
-The platform combines operations management, workforce coordination, workflow automation, reporting, business intelligence, and AI-assisted decision support into a single ecosystem.
-
----
-
-## The Problem
-
-As organizations grow, operational complexity increases.
-
-Teams often manage information across:
-
-- spreadsheets
-- messaging applications
-- disconnected databases
-- manual reports
-- operational documents
-
-This creates:
-
-- limited visibility
-- duplicated work
-- reporting delays
-- inconsistent processes
-- slower decision-making
-
-The challenge is not the lack of data.
-
-The challenge is turning operational data into operational intelligence.
+The project focuses on the operational challenges faced by multi-location service businesses where workforce management, reporting, revenue tracking, payroll processing, and performance monitoring are often fragmented across spreadsheets, messaging applications, and manual processes.
 
 ---
 
-## The Vision
+# Project Goal
 
-Build an intelligent Business Operating System capable of connecting:
+The objective of this project is to design a scalable operations intelligence platform capable of connecting:
 
 ```text
-Operations
-     ↓
-Data
-     ↓
+Operational Activity
+        ↓
+Data Collection
+        ↓
+Validation
+        ↓
+Business Rules
+        ↓
 Automation
-     ↓
-Artificial Intelligence
-     ↓
-Business Intelligence
-     ↓
-Decision Support
+        ↓
+Analytics
+        ↓
+Operational Insights
+        ↓
+Management Decisions
 ```
 
-The goal is to create a system that helps organizations operate more efficiently, automate repetitive work, and make better decisions.
+Rather than functioning as a generic dashboard, the platform models real operational workflows, business rules, workforce processes, reporting pipelines, and decision-support mechanisms.
 
 ---
 
-## Core Platform Domains
+# Business Context
 
-### Operations Management
+The platform is inspired by operational environments where:
+
+* multiple locations operate simultaneously
+* employees work across different venues
+* shifts must be tracked accurately
+* sales reports are submitted manually
+* payroll depends on worked hours
+* bonuses depend on operational performance
+* managers require visibility across locations
+
+The goal is to create a centralized operational intelligence layer capable of supporting both daily execution and strategic decision-making.
+
+---
+
+# Core Domains
+
+## Workforce Operations
 
 Responsible for:
 
-- workforce coordination
-- task management
-- operational visibility
-- process monitoring
-- performance tracking
+* employee management
+* shift tracking
+* attendance visibility
+* workforce allocation
+* productivity monitoring
 
 ---
 
-### Workforce Management
+## Revenue Operations
 
 Responsible for:
 
-- employee management
-- shift scheduling
-- workload visibility
-- workforce analytics
+* revenue calculations
+* location performance tracking
+* revenue distribution
+* operational profitability visibility
 
 ---
 
-### Workflow Automation
+## Payroll Operations
 
 Responsible for:
 
-- workflow orchestration
-- notifications
-- reporting automation
-- operational synchronization
+* salary calculations
+* bonus calculations
+* payout generation
+* compensation tracking
 
 ---
 
-### Business Intelligence
+## Workflow Automation
 
 Responsible for:
 
-- KPI monitoring
-- executive dashboards
-- operational analytics
-- performance visibility
+* report processing
+* operational synchronization
+* automated reporting
+* process orchestration
 
 ---
 
-### AI Operations
+## Operations Analytics
 
 Responsible for:
 
-- operational summaries
-- recommendations
-- anomaly detection
-- decision support
+* KPI generation
+* operational metrics
+* workforce utilization
+* venue performance analysis
 
 ---
 
-## Prototype Components
+## AI Operations
 
-### Backend API
+Responsible for:
 
-FastAPI prototype backend providing:
+* operational summaries
+* performance observations
+* workload recommendations
+* decision support
 
-- workforce endpoints
-- reporting endpoints
-- analytics endpoints
-- health monitoring endpoints
+---
+
+# Operational Data Flow
+
+```text
+Raw Shift Report
+        ↓
+Data Extraction
+        ↓
+Validation
+        ↓
+Schedule Matching
+        ↓
+Revenue Calculation
+        ↓
+Payroll Calculation
+        ↓
+Analytics Processing
+        ↓
+AI Operations Summary
+        ↓
+Management Decision
+```
+
+---
+
+# Implemented Business Logic
+
+The repository includes domain-specific operational logic rather than generic CRUD examples.
+
+Implemented rules include:
+
+* 60/40 venue-company revenue split
+* hourly compensation calculations
+* bonus distribution logic
+* schedule matching logic
+* manual review routing
+* workforce utilization calculations
+* revenue-per-hour calculations
+* venue performance calculations
+
+---
+
+# Backend Services
+
+Implemented service modules:
+
+```text
+backend/services/
+
+├── revenue_service.py
+├── payroll_service.py
+├── schedule_matching_service.py
+├── analytics_service.py
+├── ai_summary_service.py
+```
+
+### Revenue Service
+
+Handles:
+
+* revenue calculations
+* company share calculations
+* venue share calculations
+* revenue-per-hour calculations
+
+### Payroll Service
+
+Handles:
+
+* salary calculations
+* bonus calculations
+* payout calculations
+
+### Schedule Matching Service
+
+Handles:
+
+* worker assignment
+* schedule matching
+* ambiguous assignment detection
+* review routing
+
+### Analytics Service
+
+Handles:
+
+* operational metrics
+* productivity calculations
+* venue performance calculations
+* workforce utilization metrics
+
+### AI Summary Service
+
+Handles:
+
+* operational summaries
+* recommendation generation
+* operational observations
+
+---
+
+# API Layer
+
+FastAPI prototype backend exposing operational services.
 
 Current endpoints:
 
@@ -133,243 +231,200 @@ GET /health
 
 GET /employees
 GET /shifts
-
 GET /reports/daily
 
 GET /analytics/summary
+GET /analytics/operations
+
+GET /revenue/example
+GET /payroll/example
 ```
 
 ---
 
-### Database Layer
+# Database Layer
 
-PostgreSQL database schema covering:
+The database layer contains operational entities required to support reporting, payroll, analytics, and review workflows.
 
-- employees
-- locations
-- products
-- shifts
-- sales reports
-- analytics snapshots
+Core entities:
+
+```text
+employees
+venues
+products
+shifts
+sales_reports
+
+raw_reports
+review_queue
+
+payroll_records
+bonus_records
+```
 
 Included:
 
-- SQL Schema
-- Entity Relationship Diagram (ERD)
+* SQL schema
+* Entity Relationship Diagram (ERD)
+* Data model documentation
 
 ---
 
-### API Specification
+# Workflow Automation
 
-OpenAPI specification documenting:
-
-- employee services
-- shift services
-- reporting services
-- analytics services
-
----
-
-### Workflow Automation
-
-Sample n8n workflow demonstrating:
+Example workflow:
 
 ```text
-Daily Trigger
+Raw Report
       ↓
-Fetch Shift Data
+Parse Report
+      ↓
+Validate Data
+      ↓
+Schedule Matching
+      ↓
+Revenue Calculation
+      ↓
+Payroll Calculation
       ↓
 Generate Analytics
       ↓
-Create Daily Report
+Generate Daily Summary
 ```
 
 ---
 
-### Business Use Cases
+# Testing & Quality
 
-Documented scenarios:
-
-- Employee Shift Management
-- Daily Operations Reporting
-- Workforce Analytics
-- AI Operations Summary
-- Automated Reporting Workflow
-- Executive Decision Support
-
----
-
-## Technology Ecosystem
-
-### Programming
-
-- Python
-- Java
-- JavaScript
-- TypeScript
-- PHP
-
-### Databases
-
-- PostgreSQL
-- MySQL
-- Supabase
-- Airtable
-
-### Artificial Intelligence
-
-- OpenAI API
-- Claude AI
-- AI Agents
-
-### Automation
-
-- n8n
-- Make
-- REST APIs
-- Webhooks
-
-### Analytics
-
-- Power BI
-- Tableau
-
-### Infrastructure
-
-- Docker
-- AWS
-- Azure
-- Google Cloud
-
----
-
-## System Architecture
+Unit tests included:
 
 ```text
-Business Operations
-          ↓
-Data Collection Layer
-          ↓
-Business Data Platform
-          ↓
-Workflow Automation Layer
-          ↓
-AI Operations Engine
-          ↓
-Business Intelligence Layer
-          ↓
-Executive Decision Support
+tests/
+
+test_revenue_service.py
+test_payroll_service.py
+test_schedule_matching_service.py
+test_analytics_service.py
+```
+
+The repository also includes:
+
+```text
+.github/workflows/ci.yml
+```
+
+for automated test execution using GitHub Actions.
+
+---
+
+# Engineering Documentation
+
+Business documentation:
+
+```text
+docs/business-rules.md
+docs/operations-metrics.md
+docs/data-flow.md
+```
+
+Architecture documentation:
+
+```text
+architecture/system-architecture.md
+architecture/service-architecture.md
+```
+
+These documents define operational rules, metrics, processing flows, service responsibilities and system boundaries.
+
+---
+
+# Repository Structure
+
+```text
+backend/
+├── services/
+├── main.py
+├── requirements.txt
+
+database/
+api/
+workflows/
+docs/
+architecture/
+tests/
+frontend/
+demo/
+roadmap/
 ```
 
 ---
 
-## Repository Structure
+# Development
 
-| Module | Description |
-|----------|----------|
-| backend | FastAPI prototype backend |
-| api | OpenAPI specification |
-| database | SQL schema, ERD and data model |
-| workflows | Workflow documentation and n8n export |
-| docs | Product overview and business use cases |
-| architecture | Enterprise architecture and Mermaid diagrams |
-| roadmap | Product roadmap |
-| ui | Interface concepts |
-| diagrams | System flow documentation |
-| demo | Product demonstration scenarios |
-| src | Planned implementation architecture |
-
----
-
-## Current Capabilities
-
-### Workforce Tracking
-
-Track employee activity, shifts, worked hours, and operational participation.
-
-### Reporting
-
-Generate operational summaries and daily reports.
-
-### Analytics
-
-Provide workforce and operational visibility through analytics endpoints.
-
-### Workflow Automation
-
-Automate operational reporting through workflow orchestration.
-
-### Decision Support
-
-Transform operational data into actionable insights.
-
----
-
-## Running the Prototype
-
-### Install Dependencies
+Install dependencies:
 
 ```bash
 pip install -r backend/requirements.txt
 ```
 
-### Start API
+Run API:
 
 ```bash
 uvicorn backend.main:app --reload
 ```
 
-### Swagger Documentation
+Run tests:
 
-Open:
+```bash
+pytest
+```
+
+Swagger:
 
 ```text
 http://127.0.0.1:8000/docs
 ```
 
-### Health Check
+---
 
-Request:
+# Current Status
 
-```text
-GET /health
-```
+Current maturity level:
 
-Response:
+**Engineering Prototype**
 
-```json
-{
-  "status": "ok"
-}
-```
+Implemented:
+
+* backend services
+* operational business rules
+* database schema
+* workflow design
+* analytics layer
+* testing
+* CI pipeline
+* architecture documentation
+
+Planned:
+
+* authentication
+* workforce scheduling engine
+* reporting engine
+* AI assistant integration
+* dashboard implementation
+* predictive analytics
 
 ---
 
-## Future Development
+# Related Projects
 
-Planned areas:
-
-- authentication
-- role management
-- workforce scheduling
-- advanced reporting
-- AI operations assistant
-- predictive analytics
-- executive dashboards
-- business intelligence engine
+* AutoConnect Platform
+* AI Accounting Assistant
+* Legal AI Assistant
+* Medical AI Assistant
+* LifeOS AI
 
 ---
 
-## Related Projects
+# End Goal
 
-- AutoConnect
-- AI Accounting Assistant
-- Legal AI Assistant
-- Medical AI Assistant
-- LifeOS AI
-
----
-
-## End Goal
-
-Create a Business Operating System where operations, automation, analytics, and artificial intelligence work together to improve business performance and support better decisions.
+Build a system where operational activity is transformed into structured data, measurable performance, automated workflows, and actionable operational intelligence.
