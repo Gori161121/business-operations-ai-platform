@@ -1,7 +1,21 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
+from backend.services.revenue_service import (
+    calculate_revenue,
+    calculate_company_share,
+    calculate_venue_share
+)
 
+from backend.services.payroll_service import (
+    calculate_salary,
+    calculate_bonus,
+    calculate_total_payout
+)
+
+from backend.services.analytics_service import (
+    build_operations_summary
+)
 app = FastAPI(
     title="Business Operations AI Platform API",
     description="Prototype API for business operations, workforce management, reporting and analytics.",
@@ -73,3 +87,44 @@ def analytics_summary():
         "active_employees": len([e for e in employees if e.status == "active"]),
         "recommendation": "Review shift distribution and monitor workload balance."
     }
+    @app.get("/revenue/example")
+def revenue_example():
+    total_revenue = calculate_revenue(
+        classic_count=2,
+        premium_count=1,
+        diamond_count=1,
+        classic_price=149,
+        premium_price=169,
+        diamond_price=249
+    )
+
+    return {
+        "total_revenue": total_revenue,
+        "venue_share": calculate_venue_share(total_revenue),
+        "company_share": calculate_company_share(total_revenue)
+    }
+
+
+@app.get("/payroll/example")
+def payroll_example():
+    return {
+        "salary": calculate_salary(10),
+        "bonus": calculate_bonus(
+            company_revenue=1000,
+            worker_count=1
+        ),
+        "total_payout": calculate_total_payout(
+            worked_hours=10,
+            company_revenue=1000,
+            worker_count=1
+        )
+    }
+
+
+@app.get("/analytics/operations")
+def operations_analytics():
+    return build_operations_summary(
+        total_revenue=2500,
+        worked_hours=18,
+        shift_count=4
+    )
