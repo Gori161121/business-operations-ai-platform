@@ -20,8 +20,9 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r backend/requirements.txt
-- name: Run tests
-  env:
-    PYTHONPATH: .
-  run: |
-    pytest
+
+      - name: Run tests
+        env:
+          PYTHONPATH: .
+        run: |
+          pytest
