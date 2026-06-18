@@ -16,7 +16,26 @@ paths:
       responses:
         '200':
           description: Service is running
+  /revenue/example:
+    get:
+      summary: Revenue Calculation Example
+      responses:
+        '200':
+          description: Revenue calculation returned
 
+  /payroll/example:
+    get:
+      summary: Payroll Calculation Example
+      responses:
+        '200':
+          description: Payroll calculation returned
+
+  /analytics/operations:
+    get:
+      summary: Operations Analytics
+      responses:
+        '200':
+          description: Operations analytics returned
   /employees:
     get:
       summary: Get Employees
