@@ -91,3 +91,48 @@ ON sales_reports(shift_id);
 
 CREATE INDEX idx_analytics_date
 ON analytics_snapshots(snapshot_date);
+-- ==========================================
+-- Extended Operations Tables
+-- ==========================================
+
+CREATE TABLE raw_reports (
+    id SERIAL PRIMARY KEY,
+    source VARCHAR(50),
+    raw_message TEXT NOT NULL,
+    received_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    processing_status VARCHAR(30) DEFAULT 'pending'
+);
+
+CREATE TABLE review_queue (
+    id SERIAL PRIMARY KEY,
+    raw_report_id INTEGER REFERENCES raw_reports(id),
+    reason VARCHAR(100) NOT NULL,
+    status VARCHAR(30) DEFAULT 'open',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE payroll_records (
+    id SERIAL PRIMARY KEY,
+    employee_id INTEGER REFERENCES employees(id),
+    shift_id INTEGER REFERENCES shifts(id),
+    worked_hours DECIMAL(5,2),
+    salary_amount DECIMAL(10,2),
+    bonus_amount DECIMAL(10,2),
+    total_payout DECIMAL(10,2),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE bonus_records (
+    id SERIAL PRIMARY KEY,
+    employee_id INTEGER REFERENCES employees(id),
+    shift_id INTEGER REFERENCES shifts(id),
+    company_revenue DECIMAL(12,2),
+    bonus_percentage DECIMAL(5,2),
+    bonus_amount DECIMAL(10,2),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_raw_reports_status ON raw_reports(processing_status);
+CREATE INDEX idx_review_queue_status ON review_queue(status);
+CREATE INDEX idx_payroll_employee ON payroll_records(employee_id);
+CREATE INDEX idx_bonus_employee ON bonus_records(employee_id);
