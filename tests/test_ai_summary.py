@@ -34,4 +34,4 @@ def test_summary_handles_zero_hours():
         {"total_revenue": 0, "worked_hours": 0, "shift_count": 0}
     )
     assert result["generated_with"] == "rule-based-fallback"
-    assert "summary" in result    assert "summary" in result
+    assert "summary" in result
