@@ -1,40 +1,68 @@
 """
 Schedule Matching Service
 
-Responsible for:
-- Employee assignment
-- Schedule matching
-- Ambiguous match detection
-- Manual review routing
+Matches raw shift records against scheduled assignments and flags
+incomplete or ambiguous shift data for manual review (review queue).
 """
 
+REQUIRED_SHIFT_FIELDS = ("employee_id", "location", "date", "hours")
 
-def determine_assignment_method(
-    employee_from_message,
-    matched_schedule_count
-):
+
+def detect_missing_shift_data(shift: dict) -> list:
+    """Return the required fields that are missing or empty in a raw shift."""
+    missing = []
+    for field in REQUIRED_SHIFT_FIELDS:
+        value = shift.get(field)
+        if value is None or value == "":
+            missing.append(field)
+    return missing
+
+
+def assign_shift_by_schedule(shift: dict, schedule: list) -> dict:
     """
-    Priority:
+    Match a raw shift to a scheduled entry (same employee_id + date + location).
 
-    1. Employee extracted from message
-    2. Schedule match
-    3. Manual review
+    Returns the shift enriched with a status:
+      - "matched"      : a matching schedule entry was found
+      - "needs_review" : missing data or no schedule match
     """
+    missing = detect_missing_shift_data(shift)
+    if missing:
+        return {**shift, "status": "needs_review", "missing_fields": missing}
 
-    if employee_from_message:
-        return {
-            "status": "assigned",
-            "method": "message"
-        }
+    for entry in schedule:
+        if (
+            entry.get("employee_id") == shift.get("employee_id")
+            and entry.get("date") == shift.get("date")
+            and entry.get("location") == shift.get("location")
+        ):
+            return {
+                **shift,
+                "status": "matched",
+                "scheduled_hours": entry.get("hours"),
+            }
 
-    if matched_schedule_count == 1:
-        return {
-            "status": "assigned",
-            "method": "schedule"
-        }
+    return {**shift, "status": "needs_review", "reason": "no_schedule_match"}
 
-    if matched_schedule_count == 0:
-        return {
+
+def build_review_queue(raw_shifts: list, schedule: list) -> dict:
+    """Split raw shifts into matched records and a review queue."""
+    matched = []
+    review_queue = []
+
+    for shift in raw_shifts:
+        result = assign_shift_by_schedule(shift, schedule)
+        if result["status"] == "matched":
+            matched.append(result)
+        else:
+            review_queue.append(result)
+
+    return {
+        "matched": matched,
+        "review_queue": review_queue,
+        "matched_count": len(matched),
+        "review_count": len(review_queue),
+    }        return {
             "status": "review",
             "reason": "no_schedule_match"
         }
