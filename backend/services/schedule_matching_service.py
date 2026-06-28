@@ -62,23 +62,16 @@ def build_review_queue(raw_shifts: list, schedule: list) -> dict:
         "review_queue": review_queue,
         "matched_count": len(matched),
         "review_count": len(review_queue),
-    }        return {
-            "status": "review",
-            "reason": "no_schedule_match"
-        }
-
-    return {
-        "status": "review",
-        "reason": "ambiguous_schedule_match"
     }
 
 
-def requires_manual_review(result):
-    return result["status"] == "review"
+def requires_manual_review(result: dict) -> bool:
+    """True if a processed shift needs manual review."""
+    return result.get("status") == "needs_review"
 
 
-def get_review_reason(result):
-    return result.get(
-        "reason",
-        None
-    )
+def get_review_reason(result: dict):
+    """Return why a shift needs review (missing fields or reason), if any."""
+    if result.get("missing_fields"):
+        return {"missing_fields": result["missing_fields"]}
+    return result.get("reason")
